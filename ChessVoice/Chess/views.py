@@ -76,7 +76,6 @@ def validateMove(request):
 
 	data={'move': move_string}
 
-
 	json_data = json.dumps(data, cls=CustomEncoder)
 
 	return HttpResponse(json_data, content_type='application/json')
@@ -93,10 +92,7 @@ def parseCommand(data):
 	p1 = chr(96 + int(before[0])) + str(before[1])
 	p2 = chr(96 + int(after[0])) + str(after[1])
 
-	if str(tokens[0])==int and type(tokens[1])==int:
-		move = Move(before=p1, after=p2, color=color, status='pending')
-		move.save()
+	move = Move(before=p1, after=p2, color=color, status='pending')
+	move.save()
 
-		return True
-	else: 
-		return False
+	return True
