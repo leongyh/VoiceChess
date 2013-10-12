@@ -328,7 +328,7 @@ function getMove(){
   var move;
   var id;
 
-  $.get( "test.php", function( data ) {
+  $.get( "http://54.241.24.228:8000/chess/getmove", function( data ) {
     move=data.move;
     id = data.id_field;
   }, "json" );

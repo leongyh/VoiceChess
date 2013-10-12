@@ -62,8 +62,7 @@ def getMove(request):
 
 	data={'move': move_string,
 			'id_field': move.id
-			}
-
+		}
 
 	json_data = json.dumps(data, cls=CustomEncoder)
 
