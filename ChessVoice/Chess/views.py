@@ -49,8 +49,8 @@ def testing(request):
 @csrf_exempt #dont use this in production!
 def recieveCommand(request):
 	POST = request.POST
-	command =  POST['Body']['command']
+	#command =  POST['Body']['command']
 
 	print("lol ")
-	print(command)
+	print(POST)
 	return
