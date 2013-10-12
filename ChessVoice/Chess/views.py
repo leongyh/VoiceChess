@@ -1,14 +1,13 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-
-from Chess.forms import *
-
 from django.views.decorators.csrf import csrf_exempt
 
-import json, decimal, datetime
 
+from Chess.forms import *
 from Chess.models import *
+
+import json, decimal, datetime
 
 def create(request):
 	#a better way to retrieve data is needed when we get a gazillion wells
@@ -43,7 +42,7 @@ def game(request):
 	return
 
 def testing(request):
-		return render(request, 'chess.html')
+	return render(request, 'chess.html')
 
 #-----------------AJAX API------------------
 @csrf_exempt #dont use this in production!
@@ -51,6 +50,9 @@ def recieveCommand(request):
 	POST = request.POST
 	command =  POST['command']
 
-	print("lol ")
-	print(command)
-	return
+	return HttpResponse('pass')
+
+
+#----------------Backend Functions--------------
+def parseCommand(command):
+
