@@ -6,7 +6,7 @@ from Chess.forms import *
 
 import json, decimal, datetime
 
-from FlowMapApp.models import *
+from Chess.models import *
 
 def create(request):
 	#a better way to retrieve data is needed when we get a gazillion wells
