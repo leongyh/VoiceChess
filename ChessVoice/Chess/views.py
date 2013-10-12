@@ -40,6 +40,9 @@ def lobby(request):
 def game(request):
 	return
 
+def testing(request):
+		return render(request, 'chess.html')
+
 #-----------------AJAX API------------------
 def recieveCommand(request):
 	POST = request.POST

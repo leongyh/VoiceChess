@@ -315,6 +315,8 @@ function sendCommand(command){
   data = { command: command };
 
   $.post( "http://54.241.24.228/chess/test", data );
+
+  alert("sending command");
 }
 
 function upgrade() {
