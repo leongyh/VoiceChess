@@ -344,10 +344,11 @@ function moveAndVerify(data){
   });
 
   // illegal move
-  if (move === null) 
+  if (move === null) alert('invalid move!')
   else {
     postVerify(data.id_field);
     board.move(data.source+'-'+data.target);
+    alert('Next player turn');
   }
 }
 
