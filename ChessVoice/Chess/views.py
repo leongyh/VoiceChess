@@ -62,7 +62,8 @@ def getMove(request):
 
 	move_string=move.before+'-'+move.after
 
-	data={'move': move_string,
+	data={'source': move.before, 
+			'target': move.after,
 			'id_field': move.id
 		}
 
@@ -72,15 +73,11 @@ def getMove(request):
 
 @csrf_exempt #dont use this in production!
 def validateMove(request):
-	move = Move.objects.latest()
+	move_id = request.POST.get('id')
+	move = Move.objects.get(id=move_id)
+	move['status']=complete
 
-	move_string=move.before+'-'+move.after
-
-	data={'move': move_string}
-
-	json_data = json.dumps(data, cls=CustomEncoder)
-
-	return HttpResponse(json_data, content_type='application/json')
+	return HttpResponse('pass')
 
 
 
@@ -100,3 +97,5 @@ def parseCommand(data):
 	move.save()
 
 	return True
+
+

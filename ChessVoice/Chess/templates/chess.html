@@ -143,6 +143,7 @@
 	</body>
 	<script type="text/javascript">
 			var board = new ChessBoard('board', 'start');
+      var game = new Chess(); 
 	
 var langs =
 [['Afrikaans',       ['af-ZA']],
@@ -327,21 +328,31 @@ function sendCommand(command){
 
 //get move from cloud
 function getMove(){
-  var move;
-  var id;
 
   $.get( "http://54.241.24.228:8000/chess/getmove", function( data ) {
-    move=data.move;
-    id = data.id_field;
-    board.move(move); 
-    console.log(move); 
+    moveAndVerify(data); 
   }, "json" );
 
 }
 
 //move and verify
-function moveAndVerify(move,id){
+function moveAndVerify(data){
+  var move = game.move({
+    from: data.source,
+    to: data.target,
+    promotion: 'q' // NOTE: always promote to a pawn for example simplicity
+  });
 
+  // illegal move
+  if (move === null) 
+  else {
+    postVerify(data.id_field);
+    board.move(data.source+'-'+data.target);
+  }
+}
+
+function postVerify(id){
+  $.post( "http://54.241.24.228:8000/chess/verify?id=" + id, function() {})
 }
 
 function upgrade() {

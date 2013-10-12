@@ -6,4 +6,5 @@ urlpatterns = patterns('',
 	url(r'^test$', views.recieveCommand, name='recieveCommand'),
 	url(r'^testing$', views.testing, name='test'),
 	url(r'^getmove$', views.getMove, name='getMove'),	
+	url(r'^verify$', views.validateMove, name='validateMove'),
 )
