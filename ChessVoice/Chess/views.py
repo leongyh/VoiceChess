@@ -56,7 +56,7 @@ def recieveCommand(request):
 
 @csrf_exempt #dont use this in production!
 def getMove(request):
-	move = Move.objects.latest()
+	move = Move.objects.get()
 
 	move_string=move.before+'-'+move.after
 
