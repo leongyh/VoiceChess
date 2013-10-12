@@ -313,7 +313,8 @@ if (!('webkitSpeechRecognition' in window)) {
 
 //send text to cloud
 function sendCommand(command){
-  data = { command: command };
+  data = { command: command,
+          color: 'white' };
 
   $.post( "http://54.241.24.228:8000/chess/test", data );
 
