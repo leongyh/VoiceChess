@@ -15,4 +15,4 @@ class Move(models.Model):
 	after = models.CharField(max_length=3)
 	color = models.CharField(max_length=1)
 
-	game = models.ForeignKey('Game')
+	#game = models.ForeignKey('Game')

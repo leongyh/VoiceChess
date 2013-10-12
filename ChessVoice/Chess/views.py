@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from Chess.forms import *
 from Chess.models import *
 
-import json, decimal, datetime
+import nltk
 
 def create(request):
 	#a better way to retrieve data is needed when we get a gazillion wells
@@ -48,11 +48,21 @@ def testing(request):
 @csrf_exempt #dont use this in production!
 def recieveCommand(request):
 	POST = request.POST
-	command =  POST['command']
 
-	return HttpResponse('pass')
+	if parseCommand(POST): 
+		return HttpResponse('pass')
+	else: return HttpResponse('fail: invalid command')
 
 
 #----------------Backend Functions--------------
-def parseCommand(command):
+def parseCommand(data):
+	tokens = nltk.word_tokenize(data['command'])
+	before = tokens[0]
+	after = tokens[-1]
 
+	if type(before)==int & type(after)==int:
+		move = Move(before=before, after=after,color=color)
+		move.save()
+
+		return True
+	else: return False
