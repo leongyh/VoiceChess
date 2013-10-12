@@ -316,11 +316,13 @@ function sendCommand(command){
   data = { command: command,
           color: 'white' };
 
-  $.post( "http://54.241.24.228:8000/chess/test", data );
+  $.post( "http://54.241.24.228:8000/chess/test", function() {})
+  .done(function() {
+     getMove();
+  });
 
   console.log(command);
 
-  setTimeout(getMove(),5000);
 }
 
 //get move from cloud
