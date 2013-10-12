@@ -91,8 +91,8 @@ def parseCommand(data):
 	before = list(tokens[0])
 	after = list(tokens[-1])
 
-	p1 = chr(96 + before[0]) + before[1]
-	p2 = chr(96 + after[0]) + after[1]
+	p1 = chr(96 + int(before[0])) + str(before[1])
+	p2 = chr(96 + int(after[0])) + str(after[1])
 
 	if str(tokens[0])==int and type(tokens[1])==int:
 		move = Move(before=p1, after=p2, color=color, status='pending')

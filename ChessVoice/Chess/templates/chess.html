@@ -319,6 +319,8 @@ function sendCommand(command){
   $.post( "http://54.241.24.228:8000/chess/test", data );
 
   console.log(command);
+
+  setTimeout(getMove(),5000);
 }
 
 //get move from cloud
