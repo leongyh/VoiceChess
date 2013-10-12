@@ -316,7 +316,7 @@ function sendCommand(command){
   data = { command: command,
           color: 'white' };
 
-  $.post( "http://54.241.24.228:8000/chess/test", function() {})
+  $.post( "http://54.241.24.228:8000/chess/test", data, function() {})
   .done(function() {
      getMove();
   });
