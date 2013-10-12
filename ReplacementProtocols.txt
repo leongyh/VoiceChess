@@ -1,0 +1,28 @@
+Replacement Protocol for Text 
+
+Ultimately, every move needs to be boiled down to algebraic expression, e.g. a4-a5
+
+i) Convert the spoken integer to its proper coordinate on the board.
+ii) Convert any intermediary words into a dash or an x, depending on the move. 
+
+A simple movement is merely a dash. 
+
+An x is simply a cross. 
+
+"32 captures 33" --> ___x___
+
+"32 moves to 33" --> ___-___
+
+"move 32 to 33" --> ___-___
+
+FOOLPROOF LOGIC: 
+
+-The first number is the unit being picked up, the second number is the box to be moved to. 
+
+"I want to move 32 to 33": 32 --> 33
+
+"Take my pawn at 32 and move it to 33": 32 --> 33
+
+"Take my piece at 32 and take the enemy at 33.": 32 --> 33
+
+"Move 32 back to 24." 32 --> 24 
