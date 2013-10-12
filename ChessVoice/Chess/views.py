@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 from Chess.forms import *
 
+from django.views.decorators.csrf import csrf_exempt
+
 import json, decimal, datetime
 
 from Chess.models import *
@@ -44,6 +46,7 @@ def testing(request):
 		return render(request, 'chess.html')
 
 #-----------------AJAX API------------------
+@csrf_exempt #dont use this in production!
 def recieveCommand(request):
 	POST = request.POST
 	command =  POST['Body']['command']
