@@ -8,6 +8,8 @@ from Chess.forms import *
 from Chess.models import *
 
 import nltk
+import datetime
+import json
 
 def create(request):
 	#a better way to retrieve data is needed when we get a gazillion wells
@@ -56,7 +58,7 @@ def recieveCommand(request):
 
 @csrf_exempt #dont use this in production!
 def getMove(request):
-	move = Move.objects.get()
+	move = Move.objects.latest()
 
 	move_string=move.before+'-'+move.after
 
@@ -64,7 +66,7 @@ def getMove(request):
 			'id_field': move.id
 		}
 
-	json_data = json.dumps(data, cls=CustomEncoder)
+	json_data = json.dumps(data)
 
 	return HttpResponse(json_data, content_type='application/json')
 
@@ -94,7 +96,7 @@ def parseCommand(data):
 
 	print('I got here')
 
-	move = Move(before=p1, after=p2, color=color, status='pending')
+	move = Move(before=p1, after=p2, color=color, status='pending',action_time=datetime.datetime.now())
 	move.save()
 
 	return True

@@ -331,9 +331,10 @@ function getMove(){
   $.get( "http://54.241.24.228:8000/chess/getmove", function( data ) {
     move=data.move;
     id = data.id_field;
+    board.move(move); 
+    console.log(move); 
   }, "json" );
 
-  board.move(move);
 }
 
 //move and verify

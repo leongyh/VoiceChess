@@ -15,4 +15,7 @@ class Move(models.Model):
 	after = models.CharField(max_length=3)
 	color = models.CharField(max_length=1)
 	status = models.CharField(max_length=50)
-	time = models.DateTimeField(auto_now_add=True)
+	action_time = models.DateTimeField()
+	
+	class Meta:
+		get_latest_by= "action_time"
