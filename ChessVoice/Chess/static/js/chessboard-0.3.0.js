@@ -608,7 +608,7 @@ function buildBoard(orientation) {
         if ((orientation === 'white' && row === 1) ||
             (orientation === 'black' && row === 8)) {
           html += '<div class="' + CSS.notation + ' ' + CSS.alpha + '">' +
-            alpha[j] + '</div>';
+            (j+1) + '</div>';
         }
 
         // numeric notation

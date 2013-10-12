@@ -143,8 +143,7 @@
 	</body>
 	<script type="text/javascript">
 			var board = new ChessBoard('board', 'start');
-	</script>
-	<script>
+	
 var langs =
 [['Afrikaans',       ['af-ZA']],
  ['Bahasa Indonesia',['id-ID']],
@@ -319,6 +318,24 @@ function sendCommand(command){
   $.post( "http://54.241.24.228:8000/chess/test", data );
 
   console.log(command);
+}
+
+//get move from cloud
+function getMove(){
+  var move;
+  var id;
+
+  $.get( "test.php", function( data ) {
+    move=data.move;
+    id = data.id_field;
+  }, "json" );
+
+  board.move(move);
+}
+
+//move and verify
+function moveAndVerify(move,id){
+
 }
 
 function upgrade() {

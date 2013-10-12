@@ -51,18 +51,53 @@ def recieveCommand(request):
 
 	if parseCommand(POST): 
 		return HttpResponse('pass')
-	else: return HttpResponse('fail: invalid command')
+	else: 
+		return HttpResponse('fail: invalid command')
+
+@csrf_exempt #dont use this in production!
+def getMove(request):
+	move = Move.objects.latest()
+
+	move_string=move.before+'-'+move.after
+
+	data={'move': move_string,
+			'id_field': move.id
+			}
+
+
+	json_data = json.dumps(data, cls=CustomEncoder)
+
+	return HttpResponse(json_data, content_type='application/json')
+
+@csrf_exempt #dont use this in production!
+def validateMove(request):
+	move = Move.objects.latest()
+
+	move_string=move.before+'-'+move.after
+
+	data={'move': move_string}
+
+
+	json_data = json.dumps(data, cls=CustomEncoder)
+
+	return HttpResponse(json_data, content_type='application/json')
+
 
 
 #----------------Backend Functions--------------
 def parseCommand(data):
 	tokens = nltk.word_tokenize(data['command'])
-	before = tokens[0]
-	after = tokens[-1]
+	color = data['color']
+	before = list(tokens[0])
+	after = list(tokens[-1])
 
-	if type(before)==int & type(after)==int:
-		move = Move(before=before, after=after,color=color)
+	p1 = chr(96 + before[0]) + before[1]
+	p2 = chr(96 + after[0]) + after[1]
+
+	if str(tokens[0])==int and type(tokens[1])==int:
+		move = Move(before=p1, after=p2, color=color, status='pending')
 		move.save()
 
 		return True
-	else: return False
+	else: 
+		return False
