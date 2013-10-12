@@ -15,7 +15,8 @@ class Move(models.Model):
 	after = models.CharField(max_length=3)
 	color = models.CharField(max_length=1)
 	status = models.CharField(max_length=50)
+	time = models.DateTimeField(auto_now_add=True)
 
 	#game = models.ForeignKey('Game')
 	class Meta:
-		get_latest_by:"order_date"
+		get_latest_by: "order_date"
