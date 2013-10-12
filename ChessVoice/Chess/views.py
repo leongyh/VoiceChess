@@ -92,6 +92,8 @@ def parseCommand(data):
 	p1 = chr(96 + int(before[0])) + str(before[1])
 	p2 = chr(96 + int(after[0])) + str(after[1])
 
+	print('I got here')
+
 	move = Move(before=p1, after=p2, color=color, status='pending')
 	move.save()
 
